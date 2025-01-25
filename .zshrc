@@ -155,3 +155,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 export PATH="/usr/local/opt/openssh/bin:$PATH"
+
+if [ -z "$WAYLAND_DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ] ; then
+    exec sway --unsupported-gpu
+fi

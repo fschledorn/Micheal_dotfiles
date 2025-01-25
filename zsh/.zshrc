@@ -11,6 +11,7 @@ fi
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -78,7 +79,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  copyfile
   zsh-autosuggestions 
   zsh-syntax-highlighting 
   z 
@@ -116,10 +116,32 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias 'open'='xdg-open'
+alias 'copyfile'='wl-copy < '
 alias 'FS-Drucken'='ssh schledorn@shell.mathphys.info lp -d sw-duplex  < '                                                                                                                                            
 GPG_TTY=$(tty)
 export GPG_TTY
-export SSH_AUTH_SOCK="$(brew --prefix)/var/run/yubikey-agent.sock"
+#export SSH_AUTH_SOCK="$(brew --prefix)/var/run/yubikey-agent.sock"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#fzf integration
+source <(fzf --zsh)
+export FZF_DEFAULT_COMMAND="fd --type f --color=always"
+export FZF_DEFAULT_OPTS="--ansi"
+export FZFCTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# fzf aliases
+alias 'fdu'='fd -u'
+alias 'fzfb'='fzf --preview "bat --style=full --color=always --line-range=:500 {} -A"'
+
+if [[ -z "$WAYLAND_DISPLAY" ]]; then
+  exec sway --unsupported-gpu
+fi
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/schledorn/.dart-cli-completion/zsh-config.zsh ]] && . /home/schledorn/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
