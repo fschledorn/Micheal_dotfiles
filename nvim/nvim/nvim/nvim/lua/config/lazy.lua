@@ -19,14 +19,8 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extra modules here
-    -- Examples:
     { import = "lazyvim.plugins.extras.lang.json" },
-    -- { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
-
-    -- ==> ADD THIS LINE FOR C++ SUPPORT <==
-    { import = "lazyvim.plugins.extras.lang.cpp" },
-
-    -- import/override with your plugins (from lua/plugins directory)
+    -- import/override with your plugins
     { import = "plugins" },
   },
   defaults = {
@@ -41,8 +35,8 @@ require("lazy").setup({
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
-    notify = false, -- disable notifications for updates
-  },
+    notify = false, -- notify on update
+  }, -- automatically check for plugin updates
   performance = {
     rtp = {
       -- disable some rtp plugins
@@ -59,4 +53,3 @@ require("lazy").setup({
     },
   },
 })
-
