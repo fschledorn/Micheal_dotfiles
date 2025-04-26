@@ -19,8 +19,14 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import any extra modules here
-    { import = "lazyvim.plugins.extras.lang.json" },
-    -- import/override with your plugins
+    -- Examples:
+    ---   { import = "lazyvim.plugins.extras.lang.json" },
+  { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
+
+    -- ==> ADD THIS LINE FOR C++ SUPPORT <==
+    { import = "lazyvim.plugins.extras.lang.cpp" },
+
+    -- import/override with your plugins (from lua/plugins directory)
     { import = "plugins" },
   },
   defaults = {
@@ -32,11 +38,10 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
-    notify = false, -- notify on update
-  }, -- automatically check for plugin updates
+    notify = false, -- disable notifications for updates
+  },
   performance = {
     rtp = {
       -- disable some rtp plugins
@@ -51,5 +56,9 @@ require("lazy").setup({
         "zipPlugin",
       },
     },
+  },
+  opts = {
+    -- You can add other top-level LazyVim options here if needed
+    colorscheme = "oxocarbon",
   },
 })
